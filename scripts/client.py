@@ -179,7 +179,6 @@ class ZededaClient:
                     message=f"HTTP {exc.code} on {method} {path}: {safe_body[:200]}",
                     endpoint=path,
                     method=method,
-                    status_code=exc.code,
                     response_body=safe_body,
                 )
             except Exception as exc:
