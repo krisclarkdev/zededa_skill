@@ -1,19 +1,28 @@
 ---
 name: zededa
-description: Complete ZEDEDA edge management API client — 442 endpoints across 11 service domains for edge node, application, cluster, storage, network, Kubernetes, diagnostics, and user management.
-author: Kristopher Clark
-homepage: https://github.com/krisclarkdev/zededa_skill
+description: Complete ZEDEDA edge management API client — 473 endpoints across 11 service domains for edge node, application, cluster, storage, network, Kubernetes, diagnostics, and user management.
+author: Kristopher Clark <krisclarkdev@krisbox.org>
+version: 1.0.0
+homepage: https://github.com/krisclarkdev/zededa
+license: MIT
 files: ["scripts/*"]
 metadata:
   clawdbot:
     requires:
       env:
         - ZEDEDA_API_TOKEN
+    optional_env:
+      - ZEDEDA_BASE_URL
+      - ZEDEDA_LOG_LEVEL
 ---
 
 # ZEDEDA Skill
 
-Complete API client for the ZEDEDA edge computing management platform. Implements **442 endpoints** across 11 service domains with Bearer token authentication, custom error types, structured logging, and retry logic.
+Complete API client for the ZEDEDA edge computing management platform. Implements **473 endpoints** across 11 service domains with Bearer token authentication, custom error types, structured logging, and retry logic.
+
+**Author:** Kristopher Clark  
+**License:** MIT  
+**Version:** 1.0.0
 
 ## Setup
 
@@ -33,8 +42,9 @@ python3 -m scripts.zededa <service> <command> [--id ID] [--name NAME] [--body '{
 
 ## Services & Commands
 
-### Node Service (`node`) — 90 endpoints
-Manage edge nodes, hardware models, projects, and PCR templates.
+### Node Service (`node`) — 91 endpoints
+
+Manage edge nodes, hardware models, projects, brands, and PCR templates.
 
 ```bash
 python3 -m scripts.zededa node list-devices
@@ -46,8 +56,9 @@ python3 -m scripts.zededa node list-models
 python3 -m scripts.zededa node list-projects
 ```
 
-### App Service (`app`) — 80 endpoints
-Manage application bundles, instances, images, artifacts, datastores, and volumes.
+### App Service (`app`) — 123 endpoints
+
+Manage application bundles, instances (v1+v2), images, artifacts, datastores, volumes, and patch envelopes.
 
 ```bash
 python3 -m scripts.zededa app list-bundles
@@ -60,6 +71,7 @@ python3 -m scripts.zededa app list-volumes
 ```
 
 ### User Service (`user`) — 67 endpoints
+
 IAM: users, roles, realms, enterprises, sessions, login, credentials, reports.
 
 ```bash
@@ -70,7 +82,8 @@ python3 -m scripts.zededa user enterprise-self
 python3 -m scripts.zededa user list-sessions
 ```
 
-### Storage Service (`storage`) — 40 endpoints
+### Storage Service (`storage`) — 33 endpoints
+
 Patch envelopes, attestation policies, and deployment policies.
 
 ```bash
@@ -80,6 +93,7 @@ python3 -m scripts.zededa storage list-deployment-policies
 ```
 
 ### Orchestration Service (`orchestration`) — 37 endpoints
+
 Cluster instances, data streams, plugins, Azure deployments, API usage.
 
 ```bash
@@ -89,6 +103,7 @@ python3 -m scripts.zededa orchestration api-usage
 ```
 
 ### Kubernetes Service (`k8s`) — 36 endpoints
+
 Deployments, GitOps, Helm charts/repos, secrets, ZKS clusters.
 
 ```bash
@@ -97,7 +112,8 @@ python3 -m scripts.zededa k8s list-helm-charts
 python3 -m scripts.zededa k8s list-zks
 ```
 
-### Diagnostics Service (`diag`) — 23 endpoints
+### Diagnostics Service (`diag`) — 21 endpoints
+
 Device twin config, events, metrics, cloud health.
 
 ```bash
@@ -106,14 +122,16 @@ python3 -m scripts.zededa diag events
 python3 -m scripts.zededa diag health
 ```
 
-### App Profile Service (`app-profile`) — 21 endpoints
+### App Profile Service (`app-profile`) — 19 endpoints
+
 Application policies and their status.
 
 ```bash
 python3 -m scripts.zededa app-profile list-policies
 ```
 
-### Network Service (`network`) — 18 endpoints
+### Network Service (`network`) — 16 endpoints
+
 Network configurations and status.
 
 ```bash
@@ -121,6 +139,7 @@ python3 -m scripts.zededa network list-networks
 ```
 
 ### Job Service (`job`) — 17 endpoints
+
 Bulk operations for devices, applications, and hardware models.
 
 ```bash
@@ -129,6 +148,7 @@ python3 -m scripts.zededa job create-job --body '{"name":"upgrade-all","type":"B
 ```
 
 ### Edge Node Cluster Service (`cluster`) — 13 endpoints
+
 Edge node cluster configuration and status.
 
 ```bash
@@ -137,7 +157,7 @@ python3 -m scripts.zededa cluster list-clusters
 
 ## Programmatic Usage
 
-All 442 endpoints are accessible via the Python service classes:
+All 473 endpoints are accessible via the Python service classes:
 
 ```python
 from scripts.client import ZededaClient
@@ -164,15 +184,19 @@ except ZededaAuthError as e:
 ## Security & Privacy
 
 ### External Endpoints
+
 | URL | Data Sent | Purpose |
 |:----|:----------|:--------|
 | `https://zedcontrol.zededa.net/api` (configurable) | API Token, request payloads | ZEDEDA API operations |
 
 ### Data Handling
+
 Only data provided as arguments and the `ZEDEDA_API_TOKEN` env var are sent to the ZEDEDA API. The token is sanitised in all log output. No local files are read or written unless `--body-file` is used.
 
 ### Model Invocation Note
+
 This skill is designed to be autonomously invoked by the OpenClaw agent. You can opt-out by disabling this skill.
 
 ### Trust Statement
+
 By using this skill, data sent is limited to the arguments provided and sent directly to ZEDEDA. Only install this skill if you trust ZEDEDA with the information you provide.

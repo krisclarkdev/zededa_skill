@@ -1,20 +1,25 @@
 <p align="center">
-  <h1 align="center">⚡ ZEDEDA Skill</h1>
+  <h1 align="center">⚡ ZEDEDA</h1>
   <p align="center">
     <strong>Complete API client for the ZEDEDA edge computing management platform</strong>
   </p>
   <p align="center">
+    <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="Version">
     <img src="https://img.shields.io/badge/endpoints-473-blue?style=flat-square" alt="Endpoints">
     <img src="https://img.shields.io/badge/services-11-green?style=flat-square" alt="Services">
-    <img src="https://img.shields.io/badge/tests-154-brightgreen?style=flat-square" alt="Tests">
+    <img src="https://img.shields.io/badge/tests-638-brightgreen?style=flat-square" alt="Tests">
     <img src="https://img.shields.io/badge/python-3.10%2B-yellow?style=flat-square" alt="Python">
     <img src="https://img.shields.io/badge/dependencies-zero-orange?style=flat-square" alt="Zero Dependencies">
+    <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License">
   </p>
 </p>
 
 ---
 
 An [OpenClaw](https://github.com/openclaw) skill that provides **473 methods** across **11 service domains** for the ZEDEDA REST API. Built entirely on Python's standard library — no third-party dependencies required.
+
+**Author:** Kristopher Clark ([@krisclarkdev](https://github.com/krisclarkdev))  
+**License:** MIT
 
 ## Table of Contents
 
@@ -235,16 +240,18 @@ ZEDEDA_API_TOKEN=test python3 -m unittest discover -s tests -v
 | `test_client.py` | 18 | Init/auth validation, URL building, token sanitisation, retry logic, convenience wrappers |
 | `test_services.py` | 105 | All 11 services — correct HTTP method, URL path, method count assertions |
 | `test_cli.py` | 11 | JSON body loading, output formatting, help flags, command dispatch |
-| **Total** | **154** | **100% pass rate** |
+| **+ exhaustive per-method tests** | | **484** |
+| **Grand Total** | | **638** |
 
 All tests use `unittest.mock` to avoid real HTTP calls — no network or credentials needed.
 
 ## Project Structure
 
 ```
-zededa_skill/
+zededa/
 ├── SKILL.md                         # OpenClaw skill manifest & documentation
 ├── README.md                        # This file
+├── LICENSE                          # MIT License
 ├── .gitignore
 ├── scripts/
 │   ├── __init__.py                  # Package init
@@ -347,4 +354,6 @@ Every error includes:
 
 ## License
 
-This project is provided as-is for use with the ZEDEDA edge management platform.
+MIT License — Copyright (c) 2026 Kristopher Clark
+
+See [LICENSE](LICENSE) for full text.
