@@ -1,7 +1,7 @@
 ---
 name: zededa
 description: Complete ZEDEDA edge management API client — 473 endpoints across 11 service domains for edge node, application, cluster, storage, network, Kubernetes, diagnostics, and user management.
-author: Kristopher Clark <krisclarkdev@krisbox.org>
+author: Kristopher Clark
 version: 1.0.0
 homepage: https://github.com/krisclarkdev/zededa
 license: MIT
